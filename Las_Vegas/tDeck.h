@@ -9,7 +9,7 @@ class TDeck{
 public:
     TDeck();
     inline unsigned getTicket(int pos) const;
-    void shuffleDeck() const;
+    void shuffleDeck();
 };
 
 unsigned TDeck::getTicket(int pos) const{

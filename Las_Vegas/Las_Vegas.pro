@@ -7,6 +7,9 @@ SOURCES += main.cpp \
     tDeck.cpp \
     casino.cpp
 
+QMAKE_CXXFLAGS += -std=c++14 -pedantic-errors
+
+
 HEADERS += \
     tDeck.h \
     casino.h \

@@ -1,5 +1,8 @@
 #include "tDeck.h"
 #include <algorithm>
+#include <random>
+#include <ctime>
+#include <cstdlib>
 
 TDeck::TDeck(){
     for(unsigned i=0; i<5; i++){
@@ -19,6 +22,7 @@ TDeck::TDeck(){
      }
 }
 
-void TDeck::shuffleDeck()const {
-
+void TDeck::shuffleDeck() {
+    std::srand(unsigned(std::time(0)));
+    std::random_shuffle(bank_.begin(), bank_.end());
 }
