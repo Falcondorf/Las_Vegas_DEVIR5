@@ -8,10 +8,11 @@ class Casino{
     std::vector<unsigned> ticketList_;
     std::vector<unsigned> betList_;
 public:
-    Casino (unsigned n);
+    inline Casino(unsigned n);
     inline unsigned getNum() const;
     inline void creditTicket(unsigned value);
     unsigned debitHigherTicket();
+    inline unsigned totalMoney();
     inline void insertBet(unsigned valAdd, int numPlayer);
     void resetCasino();
 
@@ -29,6 +30,14 @@ void Casino::creditTicket(unsigned value){
 
 void Casino::insertBet(unsigned valAdd, int numPlayer){
     betList_[numPlayer-1] += valAdd;
+}
+
+unsigned Casino::totalMoney(){
+    unsigned total;
+    for(unsigned val : ticketList_){
+        total += val;
+    }
+    return total;
 }
 
 #endif // CASINO_H

@@ -101,7 +101,8 @@ compiler_clean:
 
 ####### Compile
 
-debug/main.o: main.cpp tDeck.h
+debug/main.o: main.cpp tDeck.h \
+		casino.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\main.o main.cpp
 
 debug/tDeck.o: tDeck.cpp tDeck.h

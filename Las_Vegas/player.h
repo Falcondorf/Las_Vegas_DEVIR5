@@ -3,12 +3,12 @@
 
 
 class Player{
-    unsigned num_;
+    int num_;
     unsigned diceStock_;
     unsigned sumAccount_;
 
 public:
-    inline Player (unsigned no, unsigned dices = 8, unsigned bank = 0);
+    inline Player (int no, unsigned dices = 8, unsigned bank = 0);
     inline void creditP (unsigned value);
     inline unsigned getSumAccount() const;
     inline unsigned getDiceStock() const;
@@ -16,7 +16,7 @@ public:
     inline void getDiceBack();
 };
 
-Player::Player(unsigned no, unsigned dices, unsigned bank)
+Player::Player(int no, unsigned dices, unsigned bank)
     :num_(no), diceStock_(dices), sumAccount_(bank){}
 
 void Player::creditP(unsigned value){
