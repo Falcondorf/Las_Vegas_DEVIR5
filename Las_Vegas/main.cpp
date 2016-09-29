@@ -45,6 +45,19 @@ int main()
     casino1.creditTicket(pile.pickLastTicket());
 
     std::cout << casino1.totalMoney() << "$ en banque pour Casino:" << casino1.getNum() << std::endl;
+
+    Casino casino2(2);
+
+    while (casino2.totalMoney() < 50000){
+        std::cout << pile.getTicket(pile.sizeDeck()) << std::endl;
+        casino2.creditTicket(pile.pickLastTicket());
+    }
+
+    std::cout << casino2.totalMoney() << "$ en banque pour Casino:" << casino2.getNum() << std::endl;
+
+    std::cout << "\nPlus gros billet = " << casino2.debitHigherTicket();
+    std::cout << "Et il reste " << casino2.totalMoney() << std::endl;
+
     return 0;
 }
 

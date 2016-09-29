@@ -33,7 +33,7 @@ void Casino::insertBet(unsigned valAdd, int numPlayer){
 }
 
 unsigned Casino::totalMoney(){
-    unsigned total;
+    unsigned total=0;
     for(unsigned val : ticketList_){
         total += val;
     }

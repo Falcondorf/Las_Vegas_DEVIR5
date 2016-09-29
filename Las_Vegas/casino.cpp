@@ -1,9 +1,9 @@
 #include "casino.h"
 
 unsigned Casino::debitHigherTicket(){
-    std::pair<unsigned, unsigned> highestTicket(0,0);
+    std::pair<unsigned, unsigned> highestTicket(0,0); //first: position/ second: la val
 
-    for (unsigned i=0; i<=ticketList_.size();i++){
+    for (unsigned i=0; i<ticketList_.size();i++){
         if (ticketList_[i] > highestTicket.second){
             highestTicket.first = i;
             highestTicket.second = ticketList_[i];
