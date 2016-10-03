@@ -2,6 +2,8 @@
 #include <iomanip>
 #include "tDeck.h"
 #include "casino.h"
+#include "player.h"
+#include "game.h"
 
 using namespace std;
 
@@ -57,6 +59,22 @@ int main()
 
     std::cout << "\nPlus gros billet = " << casino2.debitHigherTicket();
     std::cout << "Et il reste " << casino2.totalMoney() << std::endl;
+
+    Player p1 (1);
+    std::cout << "Init P1" << std::endl;
+    for (int i=0; i<8; i++){
+        std::cout << p1.getDiceAt(i) << "   ";
+    }
+    std::cout << "\nRandom Roll" << std::endl;
+    p1.rollDices();
+    for (int i=0; i<8; i++){
+        std::cout << p1.getDiceAt(i) << "   ";
+    }
+    std::cout << "\nOccurence de 2: " << p1.valueOccurency(2) << std::endl;
+
+    Game jeu (4);
+    jeu.getCasino(1).creditTicket(20000);
+    std::cout << jeu.getCasino(1).totalMoney() << std::endl;
 
     return 0;
 }

@@ -5,7 +5,9 @@ CONFIG -= qt
 
 SOURCES += main.cpp \
     tDeck.cpp \
-    casino.cpp
+    casino.cpp \
+    player.cpp \
+    game.cpp
 
 QMAKE_CXXFLAGS += -std=c++14 -pedantic-errors
 
@@ -13,5 +15,6 @@ QMAKE_CXXFLAGS += -std=c++14 -pedantic-errors
 HEADERS += \
     tDeck.h \
     casino.h \
-    player.h
+    player.h \
+    game.h
 
