@@ -1,0 +1,14 @@
+INPUT(
+./release\main.o
+./release\mainwindow.o
+./release\titleWindow.o
+./release\tDeck.o
+./release\subject.o
+./release\player.o
+./release\game.o
+./release\formulaireWindow.o
+./release\casino.o
+./release\moc_mainwindow.o
+./release\moc_formulaireWindow.o
+./release\moc_titleWindow.o
+);
