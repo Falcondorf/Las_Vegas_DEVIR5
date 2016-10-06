@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     player.cpp \
     game.cpp \
     formulaireWindow.cpp \
-    casino.cpp
+    casino.cpp \
+    gamewindow.cpp
 
 HEADERS  += mainwindow.h \
     casino.h \
@@ -30,7 +31,8 @@ HEADERS  += mainwindow.h \
     player.h \
     subject.h \
     tDeck.h \
-    titleWindow.h
+    titleWindow.h \
+    gamewindow.h
 
 FORMS    += mainwindow.ui
 

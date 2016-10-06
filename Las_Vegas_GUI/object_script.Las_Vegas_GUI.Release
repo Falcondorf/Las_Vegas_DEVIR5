@@ -8,6 +8,7 @@ INPUT(
 ./release\game.o
 ./release\formulaireWindow.o
 ./release\casino.o
+./release\gamewindow.o
 ./release\moc_mainwindow.o
 ./release\moc_formulaireWindow.o
 ./release\moc_titleWindow.o

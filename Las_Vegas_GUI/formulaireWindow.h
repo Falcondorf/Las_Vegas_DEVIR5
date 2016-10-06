@@ -12,7 +12,7 @@
 #include <QCheckBox>
 #include <QRadioButton>
 #include "game.h"
-//#include "gameWindow.h"
+#include "gamewindow.h"
 
 /*!
  * \brief formulaireWindow La classe qui gère la fenetre de configuration du jeu.
@@ -37,12 +37,12 @@ public slots:
      * \brief fourPlayerGame Affiche ou cache la possibilité d'entrer le nom
      *  des 4 joueurs au lieu de deux.
      */
-    //void fourPlayerGame();
+    void hideShowExt();
 private:
     /*!
      * \brief theGameWindow_ la fenetre de jeu.
      */
-    //gameWindow *theGameWindow_;
+    gameWindow *theGameWindow_;
     /*!
      * \brief theGame_ le jeu lancé.
      */
@@ -63,7 +63,6 @@ private:
     QRadioButton *rNoExtension_;
     QRadioButton *rExtension1_;
     QRadioButton *rExtension2_;
-    QRadioButton *rExtension3_;
     QPushButton *buttonStart_;
 
 };

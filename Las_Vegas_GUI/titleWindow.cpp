@@ -1,7 +1,5 @@
 #include "titleWindow.h"
 
-
-
 titleWindow::titleWindow(QWidget *parent) :QWidget(parent){
 
     root_ = new QVBoxLayout(this);
@@ -18,6 +16,8 @@ titleWindow::titleWindow(QWidget *parent) :QWidget(parent){
 }
 void titleWindow::startForm(){
     formW= new formulaireWindow();
+    formW->setWindowTitle("Menu - Vegas");
+    formW->setFixedSize(200,220);
     formW->show();
     this->close();
 

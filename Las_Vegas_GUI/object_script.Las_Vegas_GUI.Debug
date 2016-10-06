@@ -8,6 +8,7 @@ INPUT(
 ./debug\game.o
 ./debug\formulaireWindow.o
 ./debug\casino.o
+./debug\gamewindow.o
 ./debug\moc_mainwindow.o
 ./debug\moc_formulaireWindow.o
 ./debug\moc_titleWindow.o
