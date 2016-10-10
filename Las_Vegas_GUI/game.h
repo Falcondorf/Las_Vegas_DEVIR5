@@ -18,6 +18,7 @@ public:
     void nextPlayer();
     inline Player &getPlayer(unsigned nbP);
     inline Casino &getCasino(unsigned nbC);
+    inline unsigned getCurrPlay() const;
     void nextRound();
     bool roundOver();//Round terminé lorsque plus aucun joueur n'a de dé
     bool isOver();   //Jeu terminé quand le round 4 est fini
@@ -30,6 +31,10 @@ Casino &Game::getCasino(unsigned nbC){
 
 Player &Game::getPlayer(unsigned nbP){
     return playerList_[nbP];
+}
+
+unsigned Game::getCurrPlay() const{
+    return currPlayer_;
 }
 
 #endif // GAME_H
