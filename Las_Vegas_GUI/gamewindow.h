@@ -56,6 +56,7 @@ class gameWindow : public QWidget
 
     Game *theGame_;
 
+
 public:
     explicit gameWindow(Game *myGame, QWidget *parent = 0);
 };

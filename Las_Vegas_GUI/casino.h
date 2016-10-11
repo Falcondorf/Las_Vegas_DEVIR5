@@ -2,6 +2,7 @@
 #define CASINO_H
 
 #include <vector>
+#include <string>
 
 class Casino{
     unsigned num_;
@@ -15,6 +16,8 @@ public:
     inline unsigned totalMoney();
     inline void insertBet(unsigned valAdd, int numPlayer);
     void resetCasino();
+    std::string makeStringTickets();
+    std::string makeStringBets();
 
 };
 

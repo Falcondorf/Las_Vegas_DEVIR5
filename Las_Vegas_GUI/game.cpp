@@ -10,9 +10,9 @@ Game::Game(unsigned nbJ):nbPlayer_(nbJ){//casinoList, playerList, pile à init
     //init Casinos
     for (unsigned i=0; i<6; i++){
         casinoList_.push_back(Casino(i));
-        do{
+        while (casinoList_[i].totalMoney() < 50000){
             casinoList_[i].creditTicket(pile_.pickLastTicket());
-        }while (casinoList_[i].totalMoney() < 5000);
+        }
     }
 }
 

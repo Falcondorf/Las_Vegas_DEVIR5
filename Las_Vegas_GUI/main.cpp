@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include <QApplication>
+#include <iostream>
 #include "titleWindow.h"
+#include "game.h"
 
 int main(int argc, char *argv[])
 {
@@ -12,4 +14,5 @@ int main(int argc, char *argv[])
     tw.show();
 
     return a.exec();
+
 }

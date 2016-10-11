@@ -22,7 +22,7 @@ gameWindow::gameWindow(Game *myGame, QWidget *parent) :QWidget(parent), theGame_
     /*Déclaration, configuration et intégration des Casinos*/
     gbCasino1_ = new QGroupBox("Casino 1");
     c1Layout_ = new QVBoxLayout;
-    lTList1_ = new QLabel("Billets: ");
+    lTList1_ = new QLabel("Billets: "+QString::fromStdString(theGame_->getCasino(1).makeStringTickets()));
     lBList1_ = new QLabel("Paris des joueurs: ");
     c1Layout_->addWidget(lTList1_);
     c1Layout_->addWidget(lBList1_);
