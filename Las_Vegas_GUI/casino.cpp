@@ -1,6 +1,12 @@
 #include "casino.h"
 #include <sstream>
 
+void Casino::initBetList(unsigned nbP){
+    for (unsigned i=0; i< nbP; i++){
+        betList_.push_back(0);
+    }
+}
+
 unsigned Casino::debitHigherTicket(){
     std::pair<unsigned, unsigned> highestTicket(0,0); //first: position/ second: la val
 
@@ -31,10 +37,12 @@ std::string Casino::makeStringTickets(){
 
 std::string Casino::makeStringBets(){
     std::string laChaine ="";
+    int cpt = 1;
     for (unsigned val : betList_){
         std::stringstream ss;
-        ss << val;
-        laChaine+=ss.str()+"\n";
+        ss << cpt << ": " << val;
+        laChaine+="\n"+ss.str();
+        cpt++;
     }
     return laChaine;
 }

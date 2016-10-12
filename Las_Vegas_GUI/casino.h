@@ -8,9 +8,12 @@ class Casino{
     unsigned num_;
     std::vector<unsigned> ticketList_;
     std::vector<unsigned> betList_;
+
+
 public:
     inline Casino(unsigned n);
     inline unsigned getNum() const;
+    void initBetList(unsigned nbP);
     inline void creditTicket(unsigned value);
     unsigned debitHigherTicket();
     inline unsigned totalMoney();

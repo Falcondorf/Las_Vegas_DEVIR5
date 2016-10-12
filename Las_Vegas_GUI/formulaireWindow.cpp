@@ -57,7 +57,7 @@ void formulaireWindow::startGame(){
 
     theGameWindow_ = new gameWindow(theGame_);
     theGameWindow_->show();*/
-    this->close();
+    delete(this);
 
 }
 

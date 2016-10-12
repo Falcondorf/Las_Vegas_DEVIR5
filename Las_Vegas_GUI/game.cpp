@@ -13,6 +13,7 @@ Game::Game(unsigned nbJ):nbPlayer_(nbJ){//casinoList, playerList, pile à init
         while (casinoList_[i].totalMoney() < 50000){
             casinoList_[i].creditTicket(pile_.pickLastTicket());
         }
+        casinoList_.at(i).initBetList(nbPlayer_);
     }
 }
 
