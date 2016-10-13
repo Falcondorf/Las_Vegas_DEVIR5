@@ -9,7 +9,6 @@ void Player::rollDices(){
     for (unsigned i=0; i<diceStock_;i++){
         dices_[i]=(std::rand()%6+1);
     }
-    notifyObservers();
 }
 
 unsigned Player::valueOccurency(unsigned val) const{

@@ -5,7 +5,7 @@
 
 #include "subject.h"
 
-class Player : nvs::Subject{
+class Player{
     int num_;
     unsigned diceStock_;
     unsigned sumAccount_;
@@ -13,6 +13,7 @@ class Player : nvs::Subject{
 
 public:
     inline Player (int no, unsigned dices = 8, unsigned bank = 0);
+    inline unsigned getNum() const;
     inline void creditP (unsigned value);
     inline unsigned getSumAccount() const;
     inline unsigned getDiceStock() const;
@@ -30,6 +31,10 @@ Player::Player(int no, unsigned dices, unsigned bank)
     }
 }
 
+unsigned Player::getNum() const{
+    return num_;
+}
+
 void Player::creditP(unsigned value){
     sumAccount_ += value;
 }
@@ -44,7 +49,6 @@ unsigned Player::getDiceStock()const{
 
 void Player::putDice(unsigned num){
     diceStock_ -= num;
-    notifyObservers();
 }
 
 void Player::getDiceBack(){

@@ -61,6 +61,10 @@ class gameWindow : public QWidget, nvs::Observer
     Game *theGame_;
 
 
+    void displayCasinos();
+    
+    void displayInfosPlayer();
+    
 private slots:
     void rolling();
     void putBet();

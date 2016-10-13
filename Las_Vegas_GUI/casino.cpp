@@ -23,7 +23,6 @@ unsigned Casino::debitHigherTicket(){
 void Casino::resetCasino(){
     ticketList_.clear();
     betList_.clear();
-    notifyObservers();
 }
 
 std::string Casino::makeStringTickets(){
