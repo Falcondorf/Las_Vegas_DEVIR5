@@ -37,7 +37,7 @@ void Casino::creditTicket(unsigned value){
 }
 
 void Casino::insertBet(unsigned valAdd, int numPlayer){
-    betList_[numPlayer-1] += valAdd;
+    betList_[numPlayer] += valAdd;
     notifyObservers();
 }
 
