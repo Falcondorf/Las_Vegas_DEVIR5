@@ -47,9 +47,6 @@ public slots:
      */
     void startForm();
 
-
-
-
 };
 
 #endif // TITLEWINDOW_H

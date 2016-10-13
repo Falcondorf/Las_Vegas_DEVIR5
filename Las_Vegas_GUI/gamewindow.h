@@ -11,8 +11,12 @@
 #include <QPixmap>
 #include "game.h"
 
-class gameWindow : public QWidget
+#include "observer.h"
+
+class gameWindow : public QWidget, nvs::Observer
 {
+    Q_OBJECT
+
     QHBoxLayout *superRoot_;
     QGridLayout *casinoDisp_;
     QVBoxLayout *rightPannel_;
@@ -57,8 +61,13 @@ class gameWindow : public QWidget
     Game *theGame_;
 
 
+private slots:
+    void rolling();
+
+
 public:
     explicit gameWindow(Game *myGame, QWidget *parent = 0);
+    virtual void update(const nvs::Subject *subject) override;
 };
 
 #endif // GAMEWINDOW_H

@@ -12,4 +12,5 @@ INPUT(
 ./debug\moc_mainwindow.o
 ./debug\moc_formulaireWindow.o
 ./debug\moc_titleWindow.o
+./debug\moc_gamewindow.o
 );

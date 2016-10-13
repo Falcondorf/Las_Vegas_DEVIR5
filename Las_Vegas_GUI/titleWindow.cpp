@@ -19,6 +19,6 @@ void titleWindow::startForm(){
     formW->setWindowTitle("Menu - Vegas");
     formW->setFixedSize(200,220);
     formW->show();
-    delete(this);
-
+    //delete(this);
+    this->close();
 }

@@ -5,7 +5,9 @@
 #include "tDeck.h"
 #include "casino.h"
 
-class Game{
+#include "subject.h"
+
+class Game : public nvs::Subject{
     unsigned currPlayer_=0;
     unsigned currRound_=1;
     unsigned nbPlayer_;
@@ -25,11 +27,11 @@ public:
 
 };
 
-Casino &Game::getCasino(unsigned nbC){
+Casino & Game::getCasino(unsigned nbC){
     return casinoList_[nbC];
 }
 
-Player &Game::getPlayer(unsigned nbP){
+Player & Game::getPlayer(unsigned nbP){
     return playerList_[nbP];
 }
 

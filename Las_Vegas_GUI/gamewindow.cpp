@@ -95,4 +95,21 @@ gameWindow::gameWindow(Game *myGame, QWidget *parent) :QWidget(parent), theGame_
     rightPannel_->addWidget(buttonBet_);
     superRoot_->addLayout(casinoDisp_);
     superRoot_->addLayout(rightPannel_);
+
+    QObject::connect(rollButton_, SIGNAL(clicked()), this, SLOT(rolling()));
+
+    theGame_->registerObserver(this);
+}
+
+void gameWindow::update(const nvs::Subject *subject){
+    if (subject!=theGame_)return;
+
+}
+
+void gameWindow::rolling(){
+
+    theGame_->getPlayer(theGame_->getCurrPlay()).rollDices();
+    rollButton_->setDisabled(true);
+    buttonBet_->setEnabled(true);
+
 }

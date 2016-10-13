@@ -25,6 +25,7 @@ void Game::nextPlayer(){
     if (playerList_[currPlayer_].getDiceStock() == 0){
         nextPlayer();
     }
+        notifyObservers();
 }
 
 bool Game::roundOver(){

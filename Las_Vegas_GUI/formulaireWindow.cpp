@@ -47,17 +47,8 @@ void formulaireWindow::startGame(){
     theGame_ = new Game(sbNbJ_->value());
     theGameWindow_ = new gameWindow(theGame_);
     theGameWindow_->show();
-    /*if(sbNbJ_->value()==2){
-        theGame_ = new Game(leName1_->text().toStdString(),leName2_->text().toStdString(),sbSize_->value(),true);
-    }else{
-         theGame_ = new Game(leName1_->text().toStdString(),leName2_->text().toStdString(),
-                            leName3_->text().toStdString(),leName4_->text().toStdString(),
-                            sbSize_->value());
-    }
 
-    theGameWindow_ = new gameWindow(theGame_);
-    theGameWindow_->show();*/
-    delete(this);
+    this->deleteLater();
 
 }
 
@@ -68,4 +59,3 @@ void formulaireWindow::hideShowExt(){
         gbRadioExtension_->hide();
     }
 }
-
