@@ -3,7 +3,9 @@
 
 #include <vector>
 
-class Player{
+#include "subject.h"
+
+class Player : nvs::Subject{
     int num_;
     unsigned diceStock_;
     unsigned sumAccount_;
@@ -42,6 +44,7 @@ unsigned Player::getDiceStock()const{
 
 void Player::putDice(unsigned num){
     diceStock_ -= num;
+    notifyObservers();
 }
 
 void Player::getDiceBack(){

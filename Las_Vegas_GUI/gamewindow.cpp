@@ -97,13 +97,74 @@ gameWindow::gameWindow(Game *myGame, QWidget *parent) :QWidget(parent), theGame_
     superRoot_->addLayout(rightPannel_);
 
     QObject::connect(rollButton_, SIGNAL(clicked()), this, SLOT(rolling()));
+    QObject::connect(buttonBet_, SIGNAL(clicked()), this, SLOT(putBet()));
 
     theGame_->registerObserver(this);
 }
 
 void gameWindow::update(const nvs::Subject *subject){
     if (subject!=theGame_)return;
+    delete(gbCasino1_);
+    delete(gbCasino2_);
+    delete(gbCasino3_);
+    delete(gbCasino4_);
+    delete(gbCasino5_);
+    delete(gbCasino6_);
 
+    gbCasino1_ = new QGroupBox("Casino 1");
+    c1Layout_ = new QVBoxLayout;
+    lTList1_ = new QLabel("Billets: "+QString::fromStdString(theGame_->getCasino(0).makeStringTickets()));
+    lBList1_ = new QLabel("Paris des joueurs: "+QString::fromStdString(theGame_->getCasino(0).makeStringBets()));
+    c1Layout_->addWidget(lTList1_);
+    c1Layout_->addWidget(lBList1_);
+    gbCasino1_->setLayout(c1Layout_);
+
+    gbCasino2_ = new QGroupBox("Casino 2");
+    c2Layout_ = new QVBoxLayout;
+    lTList2_ = new QLabel("Billets: "+QString::fromStdString(theGame_->getCasino(1).makeStringTickets()));
+    lBList2_ = new QLabel("Paris des joueurs: "+QString::fromStdString(theGame_->getCasino(1).makeStringBets()));
+    c2Layout_->addWidget(lTList2_);
+    c2Layout_->addWidget(lBList2_);
+    gbCasino2_->setLayout(c2Layout_);
+
+    gbCasino3_ = new QGroupBox("Casino 3");
+    c3Layout_ = new QVBoxLayout;
+    lTList3_ = new QLabel("Billets: "+QString::fromStdString(theGame_->getCasino(2).makeStringTickets()));
+    lBList3_ = new QLabel("Paris des joueurs: "+QString::fromStdString(theGame_->getCasino(2).makeStringBets()));
+    c3Layout_->addWidget(lTList3_);
+    c3Layout_->addWidget(lBList3_);
+    gbCasino3_->setLayout(c3Layout_);
+
+    gbCasino4_ = new QGroupBox("Casino 4");
+    c4Layout_ = new QVBoxLayout;
+    lTList4_ = new QLabel("Billets: "+QString::fromStdString(theGame_->getCasino(3).makeStringTickets()));
+    lBList4_ = new QLabel("Paris des joueurs: "+QString::fromStdString(theGame_->getCasino(3).makeStringBets()));
+    c4Layout_->addWidget(lTList4_);
+    c4Layout_->addWidget(lBList4_);
+    gbCasino4_->setLayout(c4Layout_);
+
+    gbCasino5_ = new QGroupBox("Casino 5");
+    c5Layout_ = new QVBoxLayout;
+    lTList5_ = new QLabel("Billets: "+QString::fromStdString(theGame_->getCasino(4).makeStringTickets()));
+    lBList5_ = new QLabel("Paris des joueurs: "+QString::fromStdString(theGame_->getCasino(4).makeStringBets()));
+    c5Layout_->addWidget(lTList5_);
+    c5Layout_->addWidget(lBList5_);
+    gbCasino5_->setLayout(c5Layout_);
+
+    gbCasino6_ = new QGroupBox("Casino 6");
+    c6Layout_ = new QVBoxLayout;
+    lTList6_ = new QLabel("Billets: "+QString::fromStdString(theGame_->getCasino(5).makeStringTickets()));
+    lBList6_ = new QLabel("Paris des joueurs: "+QString::fromStdString(theGame_->getCasino(5).makeStringBets()));
+    c6Layout_->addWidget(lTList6_);
+    c6Layout_->addWidget(lBList6_);
+    gbCasino6_->setLayout(c6Layout_);
+
+    casinoDisp_->addWidget(gbCasino1_,0,0);
+    casinoDisp_->addWidget(gbCasino2_,0,1);
+    casinoDisp_->addWidget(gbCasino3_,1,0);
+    casinoDisp_->addWidget(gbCasino4_,1,1);
+    casinoDisp_->addWidget(gbCasino5_,2,0);
+    casinoDisp_->addWidget(gbCasino6_,2,1);
 }
 
 void gameWindow::rolling(){
@@ -112,4 +173,9 @@ void gameWindow::rolling(){
     rollButton_->setDisabled(true);
     buttonBet_->setEnabled(true);
 
+}
+
+void gameWindow::putBet(){
+    theGame_->getCasino(sbBet_->value()-1).insertBet(theGame_->getPlayer(theGame_->getCurrPlay()).valueOccurency(sbBet_->value()),theGame_->getCurrPlay());
+    theGame_->getPlayer(theGame_->getCurrPlay()).putDice(theGame_->getPlayer(theGame_->getCurrPlay()).valueOccurency(sbBet_->value()));
 }

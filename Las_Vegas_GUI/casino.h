@@ -4,7 +4,9 @@
 #include <vector>
 #include <string>
 
-class Casino{
+#include "subject.h"
+
+class Casino : public nvs::Subject{
     unsigned num_;
     std::vector<unsigned> ticketList_;
     std::vector<unsigned> betList_;
@@ -36,6 +38,7 @@ void Casino::creditTicket(unsigned value){
 
 void Casino::insertBet(unsigned valAdd, int numPlayer){
     betList_[numPlayer-1] += valAdd;
+    notifyObservers();
 }
 
 unsigned Casino::totalMoney(){

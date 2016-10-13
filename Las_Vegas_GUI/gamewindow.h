@@ -63,7 +63,7 @@ class gameWindow : public QWidget, nvs::Observer
 
 private slots:
     void rolling();
-
+    void putBet();
 
 public:
     explicit gameWindow(Game *myGame, QWidget *parent = 0);
