@@ -8,7 +8,6 @@ gameWindow::gameWindow(Game *myGame, QWidget *parent) :QWidget(parent), theGame_
     playerInfos_ = new QGroupBox("Infos joueur");
     vbPlayerInfos_ = new QVBoxLayout;
     rollButton_ = new QPushButton("Lancer");
-    dicesDisp_ = new QGridLayout;
     betSBLayout_ = new QHBoxLayout;
     sbBet_ = new QSpinBox;
     lBet_ = new QLabel("Valeur a déposer");
@@ -20,7 +19,7 @@ gameWindow::gameWindow(Game *myGame, QWidget *parent) :QWidget(parent), theGame_
     buttonBet_->setMaximumWidth(120);
     buttonBet_->setDisabled(true);
 
-    /*Déclaration, configuration et intégration des Casinos*/
+    /*Déclaration des Casinos*/
     gbCasino1_ = new QGroupBox("Casino 1");
     c1Layout_ = new QVBoxLayout;
     lTList1_ = new QLabel;
@@ -51,6 +50,7 @@ gameWindow::gameWindow(Game *myGame, QWidget *parent) :QWidget(parent), theGame_
     lTList6_ = new QLabel;
     lBList6_ = new QLabel;
 
+    /*Intégration et paramétrage des casinos au début de jeu*/
     displayCasinos();
 
     casinoDisp_->addWidget(gbCasino1_,0,0);
@@ -66,12 +66,17 @@ gameWindow::gameWindow(Game *myGame, QWidget *parent) :QWidget(parent), theGame_
     dicesLeftCurrPlay_ = new QLabel;
     displayInfosPlayer();
 
+    /*Déclaration, intégration et paramétrage des dés*/
+    dicesLayout_ = new QGridLayout;
+
+    displayCurrentRoll();
+
     /*Intégration des widgets et layout généraux*/
     betSBLayout_->addWidget(sbBet_);
     betSBLayout_->addWidget(lBet_);
     rightPannel_->addWidget(playerInfos_);
     rightPannel_->addWidget(rollButton_);
-    rightPannel_->addLayout(dicesDisp_);
+    rightPannel_->addLayout(dicesLayout_);
     rightPannel_->addLayout(betSBLayout_);
     rightPannel_->addWidget(buttonBet_);
     superRoot_->addLayout(casinoDisp_);
@@ -133,6 +138,42 @@ void gameWindow::displayInfosPlayer()
     playerInfos_->setLayout(vbPlayerInfos_);
 }
 
+void gameWindow::displayCurrentRoll(){
+    //ici en attendant
+    QPixmap pixDice1("pic/dé1.png");
+    QPixmap pixDice2("pic/dé2.png");
+    QPixmap pixDice3("pic/dé3.png");
+    QPixmap pixDice4("pic/dé4.png");
+    QPixmap pixDice5("pic/dé5.png");
+    QPixmap pixDice6("pic/dé6.png");
+
+    dice1_ = new QLabel;
+    dice1_->setPixmap(pixDice1);
+    dice2_ = new QLabel;
+    dice2_->setPixmap(pixDice2);
+    dice3_ = new QLabel;
+    dice3_->setPixmap(pixDice3);
+    dice4_ = new QLabel;
+    dice4_->setPixmap(pixDice4);
+    dice5_ = new QLabel;
+    dice5_->setPixmap(pixDice5);
+    dice6_ = new QLabel;
+    dice6_->setPixmap(pixDice6);
+    dice7_ = new QLabel;
+    dice7_->setPixmap(pixDice6);
+    dice8_ = new QLabel;
+    dice8_->setPixmap(pixDice6);
+
+    dicesLayout_->addWidget(dice1_,0,0);
+    dicesLayout_->addWidget(dice2_,1,0);
+    dicesLayout_->addWidget(dice3_,0,1);
+    dicesLayout_->addWidget(dice4_,1,1);
+    dicesLayout_->addWidget(dice5_,0,2);
+    dicesLayout_->addWidget(dice6_,1,2);
+    dicesLayout_->addWidget(dice7_,0,3);
+    dicesLayout_->addWidget(dice8_,1,3);
+}
+
 void gameWindow::update(const nvs::Subject *subject){
     if (subject!=theGame_)return;
     displayCasinos();
@@ -147,4 +188,7 @@ void gameWindow::rolling(){
 
 void gameWindow::putBet(){
     theGame_->insertBet(sbBet_->value());
+    rollButton_->setEnabled(true);
+    buttonBet_->setDisabled(true);
+    theGame_->nextPlayer();
 }

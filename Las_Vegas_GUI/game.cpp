@@ -19,13 +19,14 @@ Game::Game(unsigned nbJ):nbPlayer_(nbJ){//casinoList, playerList, pile à init
 
 void Game::nextPlayer(){
     currPlayer_++;
-    if (currPlayer_==nbPlayer_+1){
+    if (currPlayer_==nbPlayer_){
         currPlayer_=0;
     }
     if (playerList_[currPlayer_].getDiceStock() == 0){
         nextPlayer();
     }
-        notifyObservers();
+
+    notifyObservers();
 }
 
 bool Game::roundOver(){

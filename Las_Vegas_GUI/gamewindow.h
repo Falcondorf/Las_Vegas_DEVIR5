@@ -23,7 +23,6 @@ class gameWindow : public QWidget, nvs::Observer
     QGroupBox *playerInfos_;
     QVBoxLayout *vbPlayerInfos_;
     QPushButton *rollButton_;
-    QGridLayout *dicesDisp_;
     QHBoxLayout *betSBLayout_;
     QSpinBox *sbBet_;
     QLabel *lBet_;
@@ -58,12 +57,24 @@ class gameWindow : public QWidget, nvs::Observer
     QLabel *lTList6_;
     QLabel *lBList6_;
 
+    QGridLayout *dicesLayout_;
+    QLabel *dice1_;
+    QLabel *dice2_;
+    QLabel *dice3_;
+    QLabel *dice4_;
+    QLabel *dice5_;
+    QLabel *dice6_;
+    QLabel *dice7_;
+    QLabel *dice8_;
+
     Game *theGame_;
 
 
     void displayCasinos();
     
     void displayInfosPlayer();
+
+    void displayCurrentRoll();
     
 private slots:
     void rolling();
