@@ -68,7 +68,17 @@ gameWindow::gameWindow(Game *myGame, QWidget *parent) :QWidget(parent), theGame_
 
     /*Déclaration, intégration et paramétrage des dés*/
     dicesLayout_ = new QGridLayout;
+    pixDice1 = new QPixmap("pic/dé1.png");
+    pixDice2 = new QPixmap("pic/dé2.png");
+    pixDice3 = new QPixmap("pic/dé3.png");
+    pixDice4 = new QPixmap("pic/dé4.png");
+    pixDice5 = new QPixmap("pic/dé5.png");
+    pixDice6 = new QPixmap("pic/dé6.png");
 
+    //A améliorer Qvector init Qlabel
+    for (auto it=std::begin(dispDices_); it!=std::end(dispDices_); it++){
+
+    }
     displayCurrentRoll();
 
     /*Intégration des widgets et layout généraux*/
@@ -139,39 +149,50 @@ void gameWindow::displayInfosPlayer()
 }
 
 void gameWindow::displayCurrentRoll(){
-    //ici en attendant
-    QPixmap pixDice1("pic/dé1.png");
-    QPixmap pixDice2("pic/dé2.png");
-    QPixmap pixDice3("pic/dé3.png");
-    QPixmap pixDice4("pic/dé4.png");
-    QPixmap pixDice5("pic/dé5.png");
-    QPixmap pixDice6("pic/dé6.png");
 
-    dice1_ = new QLabel;
-    dice1_->setPixmap(pixDice1);
-    dice2_ = new QLabel;
-    dice2_->setPixmap(pixDice2);
-    dice3_ = new QLabel;
-    dice3_->setPixmap(pixDice3);
-    dice4_ = new QLabel;
-    dice4_->setPixmap(pixDice4);
-    dice5_ = new QLabel;
-    dice5_->setPixmap(pixDice5);
-    dice6_ = new QLabel;
-    dice6_->setPixmap(pixDice6);
-    dice7_ = new QLabel;
-    dice7_->setPixmap(pixDice6);
-    dice8_ = new QLabel;
-    dice8_->setPixmap(pixDice6);
+//    dice1_ = new QLabel;
+//    dice1_->setPixmap(pixDice1);
+//    dice2_ = new QLabel;
+//    dice2_->setPixmap(pixDice2);
+//    dice3_ = new QLabel;
+//    dice3_->setPixmap(pixDice3);
+//    dice4_ = new QLabel;
+//    dice4_->setPixmap(pixDice4);
+//    dice5_ = new QLabel;
+//    dice5_->setPixmap(pixDice5);
+//    dice6_ = new QLabel;
+//    dice6_->setPixmap(pixDice6);
+//    dice7_ = new QLabel;
+//    dice7_->setPixmap(pixDice6);
+//    dice8_ = new QLabel;
+//    dice8_->setPixmap(pixDice6);
 
-    dicesLayout_->addWidget(dice1_,0,0);
-    dicesLayout_->addWidget(dice2_,1,0);
-    dicesLayout_->addWidget(dice3_,0,1);
-    dicesLayout_->addWidget(dice4_,1,1);
-    dicesLayout_->addWidget(dice5_,0,2);
-    dicesLayout_->addWidget(dice6_,1,2);
-    dicesLayout_->addWidget(dice7_,0,3);
-    dicesLayout_->addWidget(dice8_,1,3);
+    for (unsigned i=0; i<theGame_->getPlayer(theGame_->getCurrPlay()).getDiceStock();i++){
+        switch (theGame_->getPlayer(theGame_->getCurrPlay()).getDiceAt(i)){
+        case 1:
+            dispDices_.at(i)->setPixmap(pixDice1);
+            break;
+        case 2:
+            break;
+        case 3:
+            break;
+        case 4:
+            break;
+        case 5:
+            break;
+        case 6:
+            break;
+        }
+    }
+
+    dicesLayout_->addWidget(dispDices_[0],0,0);
+    dicesLayout_->addWidget(dispDices_[1],1,0);
+    dicesLayout_->addWidget(dispDices_[2],0,1);
+    dicesLayout_->addWidget(dispDices_[3],1,1);
+    dicesLayout_->addWidget(dispDices_[4],0,2);
+    dicesLayout_->addWidget(dispDices_[5],1,2);
+    dicesLayout_->addWidget(dispDices_[6],0,3);
+    dicesLayout_->addWidget(dispDices_[7],1,3);
 }
 
 void gameWindow::update(const nvs::Subject *subject){

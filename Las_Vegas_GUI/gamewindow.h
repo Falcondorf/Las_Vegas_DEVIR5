@@ -9,6 +9,7 @@
 #include <QSpinBox>
 #include <QPushButton>
 #include <QPixmap>
+#include <QVector>
 #include "game.h"
 
 #include "observer.h"
@@ -58,14 +59,23 @@ class gameWindow : public QWidget, nvs::Observer
     QLabel *lBList6_;
 
     QGridLayout *dicesLayout_;
-    QLabel *dice1_;
-    QLabel *dice2_;
-    QLabel *dice3_;
-    QLabel *dice4_;
-    QLabel *dice5_;
-    QLabel *dice6_;
-    QLabel *dice7_;
-    QLabel *dice8_;
+    QPixmap *pixDice1;
+    QPixmap *pixDice2;
+    QPixmap *pixDice3;
+    QPixmap *pixDice4;
+    QPixmap *pixDice5;
+    QPixmap *pixDice6;
+
+    QVector<QLabel*> *dispDices_;
+
+//    QLabel *dice1_;
+//    QLabel *dice2_;
+//    QLabel *dice3_;
+//    QLabel *dice4_;
+//    QLabel *dice5_;
+//    QLabel *dice6_;
+//    QLabel *dice7_;
+//    QLabel *dice8_;
 
     Game *theGame_;
 
