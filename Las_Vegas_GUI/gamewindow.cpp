@@ -12,6 +12,7 @@ gameWindow::gameWindow(Game *myGame, QWidget *parent) :QWidget(parent), theGame_
     sbBet_ = new QSpinBox;
     lBet_ = new QLabel("Valeur a déposer");
     buttonBet_ = new QPushButton("Parier");
+    dispDices_ = new QVector<QLabel*>();
 
     /*Paramétrage des widgets en générale*/
     sbBet_->setRange(1,6);
@@ -75,10 +76,6 @@ gameWindow::gameWindow(Game *myGame, QWidget *parent) :QWidget(parent), theGame_
     pixDice5 = new QPixmap("pic/dé5.png");
     pixDice6 = new QPixmap("pic/dé6.png");
 
-    //A améliorer Qvector init Qlabel
-    for (auto it=std::begin(dispDices_); it!=std::end(dispDices_); it++){
-
-    }
     displayCurrentRoll();
 
     /*Intégration des widgets et layout généraux*/
@@ -167,38 +164,53 @@ void gameWindow::displayCurrentRoll(){
 //    dice8_ = new QLabel;
 //    dice8_->setPixmap(pixDice6);
 
+    for (unsigned i=0; i<8; i++){
+        dispDices_->append(new QLabel);
+    }
+
     for (unsigned i=0; i<theGame_->getPlayer(theGame_->getCurrPlay()).getDiceStock();i++){
         switch (theGame_->getPlayer(theGame_->getCurrPlay()).getDiceAt(i)){
         case 1:
-            dispDices_.at(i)->setPixmap(pixDice1);
+            dispDices_->at(i)->setPixmap(*pixDice1);
             break;
         case 2:
+            dispDices_->at(i)->setPixmap(*pixDice2);
             break;
         case 3:
+            dispDices_->at(i)->setPixmap(*pixDice3);
             break;
         case 4:
+            dispDices_->at(i)->setPixmap(*pixDice4);
             break;
         case 5:
+            dispDices_->at(i)->setPixmap(*pixDice5);
             break;
         case 6:
+            dispDices_->at(i)->setPixmap(*pixDice6);
             break;
         }
     }
 
-    dicesLayout_->addWidget(dispDices_[0],0,0);
-    dicesLayout_->addWidget(dispDices_[1],1,0);
-    dicesLayout_->addWidget(dispDices_[2],0,1);
-    dicesLayout_->addWidget(dispDices_[3],1,1);
-    dicesLayout_->addWidget(dispDices_[4],0,2);
-    dicesLayout_->addWidget(dispDices_[5],1,2);
-    dicesLayout_->addWidget(dispDices_[6],0,3);
-    dicesLayout_->addWidget(dispDices_[7],1,3);
+    dicesLayout_->addWidget(dispDices_->at(0),0,0);
+    dicesLayout_->addWidget(dispDices_->at(1),1,0);
+    dicesLayout_->addWidget(dispDices_->at(2),0,1);
+    dicesLayout_->addWidget(dispDices_->at(3),1,1);
+    dicesLayout_->addWidget(dispDices_->at(4),0,2);
+    dicesLayout_->addWidget(dispDices_->at(5),1,2);
+    dicesLayout_->addWidget(dispDices_->at(6),0,3);
+    dicesLayout_->addWidget(dispDices_->at(7),1,3);
+//    if (theGame_->getPlayer(theGame_->getCurrPlay()).getDiceStock() < 8){
+//      for (unsigned i=theGame_->getPlayer(theGame_->getCurrPlay()).getDiceStock(); i<8; i++){
+//           dispDices_->at(i)->deleteLater();
+//      }
+//    }
 }
 
 void gameWindow::update(const nvs::Subject *subject){
     if (subject!=theGame_)return;
     displayCasinos();
     displayInfosPlayer();
+    displayCurrentRoll();
 }
 
 void gameWindow::rolling(){
