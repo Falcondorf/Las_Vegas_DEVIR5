@@ -8,6 +8,9 @@ Game::Game(unsigned nbJ):nbPlayer_(nbJ){//casinoList, playerList, pile à init
         playerList_.push_back(Player(i));
     }
     //init Casinos
+    for (unsigned i=0; i<6; i++){
+        casinoList_.push_back(Casino(i));
+    }
     initCasinos();
 }
 
@@ -42,7 +45,7 @@ bool Game::isOver(){
 
 void Game::initCasinos(){
     for (unsigned i=0; i<6; i++){
-        casinoList_.push_back(Casino(i));
+        //casinoList_.push_back(Casino(i));
         while (casinoList_[i].totalMoney() < 50000){
             casinoList_[i].creditTicket(pile_.pickLastTicket());
         }
@@ -52,27 +55,34 @@ void Game::initCasinos(){
 
 void Game::distributeTickets(){
     for (Casino c : casinoList_){
-        while (c.getnbTicket() > 0){
+        while (c.getnbTicket() > 0 && c.isEmptyBet()){
             //trouvé le plus gros pari puis donné le premier ticket
             playerList_.at(c.getHighestBet()).creditP(c.debitHigherTicket());
+            c.clearBet(c.getHighestBet());
         }
     }
 }
 
 void Game::nextRound(){
     //Vérif égalité et Distrib billets...
-    for (Casino c : casinoList_){
-        c.checkDraw();//A vérifier si il supprimme bien
+    for (auto i=0;i<6;i++){
+        casinoList_[i].checkDraw();
     }
+//    for (Casino c : casinoList_){
+//        c.checkDraw();//A vérifier si il supprimme bien
+//    }
     distributeTickets();
 
     for (unsigned i=0; i<6; i++){
         casinoList_.at(i).resetCasino();
     }
     initCasinos();
-    for (Player p : playerList_){
-        p.getDiceBack();
+    for (auto i=0; i<nbPlayer_;i++){
+        playerList_[i].getDiceBack();
     }
+//    for (Player p : playerList_){
+//        p.getDiceBack();
+//    }
 
     currRound_++;
 

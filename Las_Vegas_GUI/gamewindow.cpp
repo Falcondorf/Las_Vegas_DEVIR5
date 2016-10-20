@@ -65,6 +65,7 @@ gameWindow::gameWindow(Game *myGame, QWidget *parent) :QWidget(parent), theGame_
     noCurrPlay_ = new QLabel;
     moneyCurrPlay_ = new QLabel;
     dicesLeftCurrPlay_ = new QLabel;
+    roundLeft_ = new QLabel;
     displayInfosPlayer();
 
     /*Déclaration, intégration et paramétrage des dés*/
@@ -139,14 +140,15 @@ void gameWindow::displayCasinos()
     gbCasino6_->setLayout(c6Layout_);
 }
 
-void gameWindow::displayInfosPlayer()
-{
+void gameWindow::displayInfosPlayer(){
     noCurrPlay_->setText("Joueur courant: "+QString::number(theGame_->getCurrPlay()));
     moneyCurrPlay_->setText("Argent gagné: "+QString::number(theGame_->getPlayer(theGame_->getCurrPlay()).getSumAccount()));
     dicesLeftCurrPlay_->setText("Nombre de dé restant: "+QString::number(theGame_->getPlayer(theGame_->getCurrPlay()).getDiceStock()));
+    roundLeft_->setText("Tour actuel: "+QString::number(theGame_->getCurrRound()));
     vbPlayerInfos_->addWidget(noCurrPlay_);
     vbPlayerInfos_->addWidget(moneyCurrPlay_);
     vbPlayerInfos_->addWidget(dicesLeftCurrPlay_);
+    vbPlayerInfos_->addWidget(roundLeft_);
     playerInfos_->setLayout(vbPlayerInfos_);
 }
 

@@ -32,6 +32,7 @@ class gameWindow : public QWidget, nvs::Observer
     QLabel *noCurrPlay_;
     QLabel *moneyCurrPlay_;
     QLabel *dicesLeftCurrPlay_;
+    QLabel *roundLeft_;
 
     QGroupBox *gbCasino1_;
     QVBoxLayout *c1Layout_;

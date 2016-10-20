@@ -26,6 +26,8 @@ public:
     std::string makeStringTickets();
     std::string makeStringBets();
     void checkDraw();
+    inline void clearBet(unsigned numP);
+    inline bool isEmptyBet();
 
 };
 
@@ -47,12 +49,26 @@ unsigned Casino::getnbTicket() const {
     return ticketList_.size();
 }
 
+bool Casino::isEmptyBet(){
+    bool isEmpty = false;
+    for (unsigned val : betList_){
+        if (val != 0){
+            isEmpty = true;
+        }
+    }
+    return isEmpty;
+}
+
 unsigned Casino::totalMoney(){
     unsigned total=0;
     for(unsigned val : ticketList_){
         total += val;
     }
     return total;
+}
+
+void Casino::clearBet(unsigned numP){
+    betList_[numP] = 0;
 }
 
 #endif // CASINO_H
