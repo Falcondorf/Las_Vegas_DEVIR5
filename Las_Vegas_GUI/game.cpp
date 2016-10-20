@@ -50,6 +50,10 @@ void Game::initCasinos(){
     }
 }
 
+void Game::checkDraw(){
+    //suppression des égalités dans les betList
+}
+
 void Game::nextRound(){
     //Distrib billets et vérif égalité...
 

@@ -17,6 +17,8 @@ class Game : public nvs::Subject{
 
     void initCasinos();
 
+    void checkDraw();
+
 public:
     Game (unsigned nbJ);
     void nextPlayer();
