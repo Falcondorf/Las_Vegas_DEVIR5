@@ -75,6 +75,11 @@ gameWindow::gameWindow(Game *myGame, QWidget *parent) :QWidget(parent), theGame_
     pixDice4 = new QPixmap("pic/dé4.png");
     pixDice5 = new QPixmap("pic/dé5.png");
     pixDice6 = new QPixmap("pic/dé6.png");
+    pixDiceVoid = new QPixmap("pic/déVide.png");
+
+    for (unsigned i=0; i<8; i++){
+        dispDices_->append(new QLabel);
+    }
 
     displayCurrentRoll();
 
@@ -146,29 +151,7 @@ void gameWindow::displayInfosPlayer()
 }
 
 void gameWindow::displayCurrentRoll(){
-
-//    dice1_ = new QLabel;
-//    dice1_->setPixmap(pixDice1);
-//    dice2_ = new QLabel;
-//    dice2_->setPixmap(pixDice2);
-//    dice3_ = new QLabel;
-//    dice3_->setPixmap(pixDice3);
-//    dice4_ = new QLabel;
-//    dice4_->setPixmap(pixDice4);
-//    dice5_ = new QLabel;
-//    dice5_->setPixmap(pixDice5);
-//    dice6_ = new QLabel;
-//    dice6_->setPixmap(pixDice6);
-//    dice7_ = new QLabel;
-//    dice7_->setPixmap(pixDice6);
-//    dice8_ = new QLabel;
-//    dice8_->setPixmap(pixDice6);
-
-    for (unsigned i=0; i<8; i++){
-        dispDices_->append(new QLabel);
-    }
-
-    for (unsigned i=0; i<theGame_->getPlayer(theGame_->getCurrPlay()).getDiceStock();i++){
+    for (auto i=0; i<theGame_->getPlayer(theGame_->getCurrPlay()).getDiceStock();i++){
         switch (theGame_->getPlayer(theGame_->getCurrPlay()).getDiceAt(i)){
         case 1:
             dispDices_->at(i)->setPixmap(*pixDice1);
@@ -191,6 +174,10 @@ void gameWindow::displayCurrentRoll(){
         }
     }
 
+    for (auto i=theGame_->getPlayer(theGame_->getCurrPlay()).getDiceStock(); i<8;i++){
+        dispDices_->at(i)->setPixmap(*pixDiceVoid);
+    }
+
     dicesLayout_->addWidget(dispDices_->at(0),0,0);
     dicesLayout_->addWidget(dispDices_->at(1),1,0);
     dicesLayout_->addWidget(dispDices_->at(2),0,1);
@@ -211,6 +198,11 @@ void gameWindow::update(const nvs::Subject *subject){
     displayCasinos();
     displayInfosPlayer();
     displayCurrentRoll();
+    if (theGame_->roundOver()){
+        QLabel *text = new QLabel("FINI");
+        text->show();
+        delete(this);
+    }
 }
 
 void gameWindow::rolling(){

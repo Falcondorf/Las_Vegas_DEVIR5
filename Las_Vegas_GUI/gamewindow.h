@@ -65,17 +65,9 @@ class gameWindow : public QWidget, nvs::Observer
     QPixmap *pixDice4;
     QPixmap *pixDice5;
     QPixmap *pixDice6;
+    QPixmap *pixDiceVoid;
 
     QVector<QLabel*> *dispDices_;
-
-//    QLabel *dice1_;
-//    QLabel *dice2_;
-//    QLabel *dice3_;
-//    QLabel *dice4_;
-//    QLabel *dice5_;
-//    QLabel *dice6_;
-//    QLabel *dice7_;
-//    QLabel *dice8_;
 
     Game *theGame_;
 
