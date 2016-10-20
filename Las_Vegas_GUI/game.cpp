@@ -8,13 +8,7 @@ Game::Game(unsigned nbJ):nbPlayer_(nbJ){//casinoList, playerList, pile à init
         playerList_.push_back(Player(i));
     }
     //init Casinos
-    for (unsigned i=0; i<6; i++){
-        casinoList_.push_back(Casino(i));
-        while (casinoList_[i].totalMoney() < 50000){
-            casinoList_[i].creditTicket(pile_.pickLastTicket());
-        }
-        casinoList_.at(i).initBetList(nbPlayer_);
-    }
+    initCasinos();
 }
 
 void Game::nextPlayer(){
@@ -22,7 +16,7 @@ void Game::nextPlayer(){
     if (currPlayer_==nbPlayer_){
         currPlayer_=0;
     }
-    if (playerList_[currPlayer_].getDiceStock() == 0){
+    if (playerList_[currPlayer_].getDiceStock() == 0 && !roundOver()){
         nextPlayer();
     }
 
@@ -44,4 +38,27 @@ bool Game::isOver(){
         isOver = true;
     }
     return isOver;
+}
+
+void Game::initCasinos(){
+    for (unsigned i=0; i<6; i++){
+        casinoList_.push_back(Casino(i));
+        while (casinoList_[i].totalMoney() < 50000){
+            casinoList_[i].creditTicket(pile_.pickLastTicket());
+        }
+        casinoList_.at(i).initBetList(nbPlayer_);
+    }
+}
+
+void Game::nextRound(){
+    //Distrib billets et vérif égalité...
+
+    for (unsigned i=0; i<6; i++){
+        casinoList_.at(i).resetCasino();
+    }
+    initCasinos();
+    for (Player p : playerList_){
+        p.getDiceBack();
+    }
+    currRound_++;
 }

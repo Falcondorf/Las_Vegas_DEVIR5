@@ -13,7 +13,9 @@ class Game : public nvs::Subject{
     unsigned nbPlayer_;
     std::vector<Player> playerList_;
     std::vector<Casino> casinoList_;
-    TDeck pile_;    
+    TDeck pile_;
+
+    void initCasinos();
 
 public:
     Game (unsigned nbJ);

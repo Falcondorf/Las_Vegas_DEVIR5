@@ -199,9 +199,16 @@ void gameWindow::update(const nvs::Subject *subject){
     displayInfosPlayer();
     displayCurrentRoll();
     if (theGame_->roundOver()){
-        QLabel *text = new QLabel("FINI");
-        text->show();
-        delete(this);
+
+//        QLabel *text = new QLabel("FINI");
+//        text->show();
+//        this->close();
+
+        if (theGame_->isOver()){
+
+        } else {
+            theGame_->nextRound();
+        }
     }
 }
 
