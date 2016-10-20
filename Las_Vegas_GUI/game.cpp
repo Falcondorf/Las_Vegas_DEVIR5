@@ -50,12 +50,21 @@ void Game::initCasinos(){
     }
 }
 
-void Game::checkDraw(){
-    //suppression des égalités dans les betList
+void Game::distributeTickets(){
+    for (Casino c : casinoList_){
+        while (c.getnbTicket() > 0){
+            //trouvé le plus gros pari puis donné le premier ticket
+            playerList_.at(c.getHighestBet()).creditP(c.debitHigherTicket());
+        }
+    }
 }
 
 void Game::nextRound(){
-    //Distrib billets et vérif égalité...
+    //Vérif égalité et Distrib billets...
+    for (Casino c : casinoList_){
+        c.checkDraw();//A vérifier si il supprimme bien
+    }
+    distributeTickets();
 
     for (unsigned i=0; i<6; i++){
         casinoList_.at(i).resetCasino();
@@ -64,5 +73,8 @@ void Game::nextRound(){
     for (Player p : playerList_){
         p.getDiceBack();
     }
+
     currRound_++;
+
+    notifyObservers();
 }

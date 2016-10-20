@@ -15,6 +15,8 @@ class Casino{
 public:
     inline Casino(unsigned n);
     inline unsigned getNum() const;
+    inline unsigned getnbTicket() const;
+    unsigned getHighestBet() const;
     void initBetList(unsigned nbP);
     inline void creditTicket(unsigned value);
     unsigned debitHigherTicket();
@@ -23,6 +25,7 @@ public:
     void resetCasino();
     std::string makeStringTickets();
     std::string makeStringBets();
+    void checkDraw();
 
 };
 
@@ -38,6 +41,10 @@ void Casino::creditTicket(unsigned value){
 
 void Casino::insertBet(unsigned valAdd, int numPlayer){
     betList_[numPlayer] += valAdd;
+}
+
+unsigned Casino::getnbTicket() const {
+    return ticketList_.size();
 }
 
 unsigned Casino::totalMoney(){

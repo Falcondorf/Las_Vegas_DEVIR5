@@ -16,8 +16,7 @@ class Game : public nvs::Subject{
     TDeck pile_;
 
     void initCasinos();
-
-    void checkDraw();
+    void distributeTickets();
 
 public:
     Game (unsigned nbJ);

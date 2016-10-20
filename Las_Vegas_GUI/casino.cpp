@@ -20,6 +20,18 @@ unsigned Casino::debitHigherTicket(){
     return highestTicket.second;
 }
 
+unsigned Casino::getHighestBet() const {
+    std::pair<unsigned, unsigned> highestBet(0,0); //first: position/ second: la val
+
+    for (unsigned i=0; i<betList_.size();i++){
+        if (betList_[i] > highestBet.second){
+            highestBet.first = i;
+            highestBet.second = betList_[i];
+        }
+    }
+    return highestBet.first;
+}
+
 void Casino::resetCasino(){
     ticketList_.clear();
     betList_.clear();
@@ -45,4 +57,23 @@ std::string Casino::makeStringBets(){
         cpt++;
     }
     return laChaine;
+}
+
+void Casino::checkDraw(){
+    unsigned i=0, j=betList_.size()-1;
+    bool wasDoubled;
+    while (i<j){
+        wasDoubled = false;
+        while (j>i){
+            if (betList_.at(i) == betList_.at(j)){
+                betList_[j] = 0;
+                wasDoubled = true;
+            }
+            j--;
+        }
+        if (wasDoubled){
+            betList_.at(i) = 0;
+        }
+        i++;
+    }
 }
