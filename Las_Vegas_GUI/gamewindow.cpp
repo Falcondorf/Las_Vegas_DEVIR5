@@ -141,7 +141,7 @@ void gameWindow::displayCasinos()
 }
 
 void gameWindow::displayInfosPlayer(){
-    noCurrPlay_->setText("Joueur courant: "+QString::number(theGame_->getCurrPlay()));
+    noCurrPlay_->setText("Joueur courant: "+QString::number(theGame_->getCurrPlay()+1));
     moneyCurrPlay_->setText("Argent gagné: "+QString::number(theGame_->getPlayer(theGame_->getCurrPlay()).getSumAccount()));
     dicesLeftCurrPlay_->setText("Nombre de dé restant: "+QString::number(theGame_->getPlayer(theGame_->getCurrPlay()).getDiceStock()));
     roundLeft_->setText("Tour actuel: "+QString::number(theGame_->getCurrRound()));
