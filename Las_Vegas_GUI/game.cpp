@@ -1,7 +1,10 @@
 #include "game.h"
 
-Game::Game(unsigned nbJ):nbPlayer_(nbJ){//casinoList, playerList, pile à init
+Game::Game(unsigned nbJ, bool bigTickets):nbPlayer_(nbJ){//casinoList, playerList, pile à init
     //Init pile et mélange
+    if (bigTickets){
+        pile_.extensionBigTickets();
+    }
     pile_.shuffleDeck();
     //init Joueurs
     for (unsigned i=0; i<nbJ; i++){
@@ -37,7 +40,7 @@ bool Game::roundOver(){
 
 bool Game::isOver(){
     bool isOver = false;
-    if (currRound_=5){
+    if (currRound_>3){
         isOver = true;
     }
     return isOver;

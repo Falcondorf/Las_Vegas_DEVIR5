@@ -17,7 +17,7 @@ titleWindow::titleWindow(QWidget *parent) :QWidget(parent){
 void titleWindow::startForm(){
     formW= new formulaireWindow();
     formW->setWindowTitle("Menu - Vegas");
-    formW->setFixedSize(200,220);
+    formW->setFixedSize(212,220);
     formW->show();
     //delete(this);
     this->close();

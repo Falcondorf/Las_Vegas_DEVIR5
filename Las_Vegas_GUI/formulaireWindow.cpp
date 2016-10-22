@@ -8,7 +8,7 @@ formulaireWindow::formulaireWindow(QWidget *parent) :QWidget(parent){
     lNbJ_ = new QLabel(this);
     sbNbJ_ = new QSpinBox(this);
     rNoExtension_ = new QRadioButton(this);
-    rExtension1_ = new QRadioButton(this);
+    rExtensionBigTickets_ = new QRadioButton(this);
     rExtension2_ = new QRadioButton(this);
 
     gbRadioExtension_ = new QGroupBox(tr("Extensions"));
@@ -21,10 +21,10 @@ formulaireWindow::formulaireWindow(QWidget *parent) :QWidget(parent){
 
     rNoExtension_->setText("Pas d'extension");
     rNoExtension_->setChecked(true);
-    rExtension1_->setText("Ext1");
-    rExtension2_->setText("Ext2");
+    rExtensionBigTickets_->setText("Big Tickets (5 billets de 100000)");
+    rExtension2_->setText("Big Dices (un gros dé double)");
     vbExtensionForRadio_->addWidget(rNoExtension_);
-    vbExtensionForRadio_->addWidget(rExtension1_);
+    vbExtensionForRadio_->addWidget(rExtensionBigTickets_);
     vbExtensionForRadio_->addWidget(rExtension2_);
     gbRadioExtension_->setLayout(vbExtensionForRadio_);
     gbRadioExtension_->hide();
@@ -44,7 +44,8 @@ formulaireWindow::formulaireWindow(QWidget *parent) :QWidget(parent){
 
 void formulaireWindow::startGame(){
 
-    theGame_ = new Game(sbNbJ_->value());
+    theGame_ = new Game(sbNbJ_->value(),rExtensionBigTickets_->isChecked());
+
     theGameWindow_ = new gameWindow(theGame_);
     theGameWindow_->show();
 

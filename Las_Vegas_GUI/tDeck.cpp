@@ -26,3 +26,9 @@ void TDeck::shuffleDeck() {
     std::srand(unsigned(std::time(0)));
     std::random_shuffle(bank_.begin(), bank_.end());
 }
+
+void TDeck::extensionBigTickets(){
+    for(unsigned i=0; i<5; i++){
+        bank_.push_back(100000);
+    }
+}

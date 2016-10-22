@@ -1,4 +1,5 @@
 #include "gamewindow.h"
+#include <QMessageBox>
 
 gameWindow::gameWindow(Game *myGame, QWidget *parent) :QWidget(parent), theGame_(myGame){
     /*Déclaration générale des layouts et widgets*/
@@ -188,11 +189,6 @@ void gameWindow::displayCurrentRoll(){
     dicesLayout_->addWidget(dispDices_->at(5),1,2);
     dicesLayout_->addWidget(dispDices_->at(6),0,3);
     dicesLayout_->addWidget(dispDices_->at(7),1,3);
-//    if (theGame_->getPlayer(theGame_->getCurrPlay()).getDiceStock() < 8){
-//      for (unsigned i=theGame_->getPlayer(theGame_->getCurrPlay()).getDiceStock(); i<8; i++){
-//           dispDices_->at(i)->deleteLater();
-//      }
-//    }
 }
 
 void gameWindow::update(const nvs::Subject *subject){
@@ -201,13 +197,12 @@ void gameWindow::update(const nvs::Subject *subject){
     displayInfosPlayer();
     displayCurrentRoll();
     if (theGame_->roundOver()){
-
-//        QLabel *text = new QLabel("FINI");
-//        text->show();
-//        this->close();
-
         if (theGame_->isOver()){
-
+            QMessageBox *endWindow = new QMessageBox;
+            endWindow->setText("FIN\nLe joueur "+QString::number(theGame_->getWinner().first+1)
+                               +" a gagné avec une somme de "+QString::number(theGame_->getWinner().second));
+            endWindow->exec();
+            this->close();
         } else {
             theGame_->nextRound();
         }

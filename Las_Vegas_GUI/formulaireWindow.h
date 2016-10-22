@@ -61,7 +61,7 @@ private:
     QLabel *lNbJ_;
     QSpinBox *sbNbJ_;
     QRadioButton *rNoExtension_;
-    QRadioButton *rExtension1_;
+    QRadioButton *rExtensionBigTickets_;
     QRadioButton *rExtension2_;
     QPushButton *buttonStart_;
 

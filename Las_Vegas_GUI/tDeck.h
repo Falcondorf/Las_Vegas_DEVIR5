@@ -12,6 +12,7 @@ public:
     inline unsigned pickLastTicket();
     inline void underDeck(unsigned val);
     inline unsigned sizeDeck();
+    void extensionBigTickets();
     void shuffleDeck();
 };
 

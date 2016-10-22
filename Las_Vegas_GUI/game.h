@@ -19,7 +19,7 @@ class Game : public nvs::Subject{
     void distributeTickets();
 
 public:
-    Game (unsigned nbJ);
+    Game (unsigned nbJ, bool bigTickets);
     void nextPlayer();
     inline Player &getPlayer(unsigned nbP);
     inline Casino &getCasino(unsigned nbC);
@@ -27,7 +27,8 @@ public:
     inline unsigned getCurrRound() const;
     void nextRound();
     bool roundOver();//Round terminé lorsque plus aucun joueur n'a de dé
-    bool isOver();   //Jeu terminé quand le round 4 est fini
+    bool isOver();   //Jeu terminé quand le round 4 est fini    
+    inline std::pair<unsigned, unsigned> getWinner();
 
     inline void insertBet (unsigned val);
     inline void rollDices();
@@ -59,6 +60,18 @@ void Game::insertBet(unsigned val){
 void Game::rollDices(){
     playerList_[currPlayer_].rollDices();
     notifyObservers();
+}
+
+std::pair<unsigned, unsigned> Game::getWinner(){
+    //first: numéro joueur / second: somme totale
+    std::pair<unsigned, unsigned> winner(0,0);
+    for(Player p : playerList_){
+        if (p.getSumAccount()>winner.second){
+            winner.first = p.getNum();
+            winner.second = p.getSumAccount();
+        }
+    }
+    return winner;
 }
 
 #endif // GAME_H
