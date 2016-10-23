@@ -13,10 +13,13 @@ void Player::rollDices(){
 
 unsigned Player::valueOccurency(unsigned val) const{
     unsigned count = 0;
-    for(auto i=0; i< getDiceStock();i++){
+    for(unsigned i=0; i< getDiceStock();i++){
         if (dices_.at(i)==val){
             count++;
         }
+    }
+    if (bigDice_.first && bigDice_.second == val){
+        count += 2;
     }
     return count;
 }

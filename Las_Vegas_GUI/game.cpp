@@ -1,6 +1,6 @@
 #include "game.h"
 
-Game::Game(unsigned nbJ, bool bigTickets):nbPlayer_(nbJ){//casinoList, playerList, pile à init
+Game::Game(unsigned nbJ, bool bigTickets, bool bigDices):nbPlayer_(nbJ){//casinoList, playerList, pile à init
     //Init pile et mélange
     if (bigTickets){
         pile_.extensionBigTickets();
@@ -8,7 +8,7 @@ Game::Game(unsigned nbJ, bool bigTickets):nbPlayer_(nbJ){//casinoList, playerLis
     pile_.shuffleDeck();
     //init Joueurs
     for (unsigned i=0; i<nbJ; i++){
-        playerList_.push_back(Player(i));
+        playerList_.push_back(Player(i,bigDices));
     }
     //init Casinos
     for (unsigned i=0; i<6; i++){
@@ -80,7 +80,7 @@ void Game::nextRound(){
         casinoList_.at(i).resetCasino();
     }
     initCasinos();
-    for (auto i=0; i<nbPlayer_;i++){
+    for (unsigned i=0; i<nbPlayer_;i++){
         playerList_[i].getDiceBack();
     }
 //    for (Player p : playerList_){

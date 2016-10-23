@@ -7,32 +7,58 @@
 
 class Player{
     int num_;
+    bool bigDiceExtension_;
+    std::pair<bool, unsigned> bigDice_;
     unsigned diceStock_;
     unsigned sumAccount_;
     std::vector<unsigned>dices_;
 
 public:
-    inline Player (int no, unsigned dices = 8, unsigned bank = 0);
+    inline Player (int no, bool ext = false, unsigned dices = 8, unsigned bank = 0);
     inline unsigned getNum() const;
     inline void creditP (unsigned value);
     inline unsigned getSumAccount() const;
     inline unsigned getDiceStock() const;
-    inline void putDice(unsigned num);
+    inline void putDice(unsigned num, bool putBig);
     inline void getDiceBack();
     void rollDices();
     inline unsigned getDiceAt(unsigned pos)const;
     unsigned valueOccurency(unsigned val)const;
+    inline bool getBigDiceExt() const;
+    inline bool getHasBigDice() const;
+    inline unsigned getBigDiceVal() const;
 };
 
-Player::Player(int no, unsigned dices, unsigned bank)
-    :num_(no), diceStock_(dices), sumAccount_(bank){
-    for (int i=0; i<8; i++){
+Player::Player(int no, bool ext, unsigned dices, unsigned bank)
+    :num_(no), bigDiceExtension_(ext), sumAccount_(bank){
+    if (bigDiceExtension_){
+        diceStock_ = dices-1;
+        bigDice_.first = true;
+        bigDice_.second = 1;
+    } else {
+        diceStock_ = dices;
+        bigDice_.first = false;
+        bigDice_.second = 0;
+    }
+    for (unsigned i=0; i<diceStock_; i++){
         dices_.push_back(1);
     }
 }
 
 unsigned Player::getNum() const{
     return num_;
+}
+
+bool Player::getBigDiceExt() const{
+    return bigDiceExtension_;
+}
+
+bool Player::getHasBigDice() const{
+    return bigDice_.first;
+}
+
+unsigned Player::getBigDiceVal() const{
+    return bigDice_.second;
 }
 
 void Player::creditP(unsigned value){
@@ -44,15 +70,27 @@ unsigned Player::getSumAccount()const{
 }
 
 unsigned Player::getDiceStock()const{
-    return diceStock_;
+    if(bigDice_.first){
+        return diceStock_+1;
+    }else{
+        return diceStock_;
+    }
 }
 
-void Player::putDice(unsigned num){
+void Player::putDice(unsigned num, bool putBig){
     diceStock_ -= num;
+    if (putBig){
+        bigDice_.first = false;
+    }
 }
 
 void Player::getDiceBack(){
-    diceStock_ = 8;
+    if (bigDiceExtension_){
+        diceStock_ = 7;
+        bigDice_.first = true;
+    }else {
+        diceStock_ = 8;
+    }
 }
 
 unsigned Player::getDiceAt(unsigned pos) const{

@@ -154,7 +154,7 @@ void gameWindow::displayInfosPlayer(){
 }
 
 void gameWindow::displayCurrentRoll(){
-    for (auto i=0; i<theGame_->getPlayer(theGame_->getCurrPlay()).getDiceStock();i++){
+    for (unsigned i=0; i<theGame_->getPlayer(theGame_->getCurrPlay()).getDiceStock();i++){
         switch (theGame_->getPlayer(theGame_->getCurrPlay()).getDiceAt(i)){
         case 1:
             dispDices_->at(i)->setPixmap(*pixDice1);

@@ -19,7 +19,7 @@ class Game : public nvs::Subject{
     void distributeTickets();
 
 public:
-    Game (unsigned nbJ, bool bigTickets);
+    Game (unsigned nbJ, bool bigTickets, bool bigDices);
     void nextPlayer();
     inline Player &getPlayer(unsigned nbP);
     inline Casino &getCasino(unsigned nbC);
@@ -53,7 +53,13 @@ unsigned Game::getCurrRound() const{
 
 void Game::insertBet(unsigned val){
     casinoList_[val-1].insertBet(playerList_[currPlayer_].valueOccurency(val), playerList_[currPlayer_].getNum());
-    playerList_[currPlayer_].putDice(playerList_[currPlayer_].valueOccurency(val));
+    if (playerList_[currPlayer_].getBigDiceExt() && playerList_[currPlayer_].getBigDiceVal() == val){
+        playerList_[currPlayer_].putDice(playerList_[currPlayer_].valueOccurency(val)-1,true);
+    } else if (playerList_[currPlayer_].getBigDiceExt() && playerList_[currPlayer_].getBigDiceVal() != val){
+        playerList_[currPlayer_].putDice(playerList_[currPlayer_].valueOccurency(val)-1,false);
+    }else {
+        playerList_[currPlayer_].putDice(playerList_[currPlayer_].valueOccurency(val),false);
+    }
     notifyObservers();
 }
 
