@@ -1,6 +1,6 @@
 #include "game.h"
 
-Game::Game(unsigned nbJ, bool bigTickets, bool bigDices):nbPlayer_(nbJ){//casinoList, playerList, pile à init
+Game::Game(unsigned nbJ, bool bigTickets, bool bigDices):nbPlayer_(nbJ), bigDiceExt_(bigDices){//casinoList, playerList, pile à init
     //Init pile et mélange
     if (bigTickets){
         pile_.extensionBigTickets();

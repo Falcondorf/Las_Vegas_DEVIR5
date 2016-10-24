@@ -11,6 +11,7 @@ class Game : public nvs::Subject{
     unsigned currPlayer_=0;
     unsigned currRound_=1;
     unsigned nbPlayer_;
+    bool bigDiceExt_;
     std::vector<Player> playerList_;
     std::vector<Casino> casinoList_;
     TDeck pile_;
@@ -33,6 +34,7 @@ public:
     inline void insertBet (unsigned val);
     inline void rollDices();
 
+    inline bool playingBigDice() const;
 };
 
 Casino & Game::getCasino(unsigned nbC){
@@ -78,6 +80,10 @@ std::pair<unsigned, unsigned> Game::getWinner(){
         }
     }
     return winner;
+}
+
+bool Game::playingBigDice() const{
+    return bigDiceExt_;
 }
 
 #endif // GAME_H

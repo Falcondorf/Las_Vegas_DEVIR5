@@ -78,6 +78,13 @@ gameWindow::gameWindow(Game *myGame, QWidget *parent) :QWidget(parent), theGame_
     pixDice5 = new QPixmap("pic/dé5.png");
     pixDice6 = new QPixmap("pic/dé6.png");
     pixDiceVoid = new QPixmap("pic/déVide.png");
+    pixBDice1 = new QPixmap("pic/dé1R.png");
+    pixBDice2 = new QPixmap("pic/dé2R.png");
+    pixBDice3 = new QPixmap("pic/dé3R.png");
+    pixBDice4 = new QPixmap("pic/dé4R.png");
+    pixBDice5 = new QPixmap("pic/dé5R.png");
+    pixBDice6 = new QPixmap("pic/dé6R.png");
+    pixBDiceVoid = new QPixmap("pic/déVideR.png");
 
     for (unsigned i=0; i<8; i++){
         dispDices_->append(new QLabel);
@@ -154,7 +161,14 @@ void gameWindow::displayInfosPlayer(){
 }
 
 void gameWindow::displayCurrentRoll(){
-    for (unsigned i=0; i<theGame_->getPlayer(theGame_->getCurrPlay()).getDiceStock();i++){
+    unsigned normalStock;
+    if (theGame_->playingBigDice()){
+        normalStock = theGame_->getPlayer(theGame_->getCurrPlay()).getDiceStock()-1;
+    } else {
+        normalStock = theGame_->getPlayer(theGame_->getCurrPlay()).getDiceStock();
+    }
+
+    for (unsigned i=0; i<normalStock;i++){
         switch (theGame_->getPlayer(theGame_->getCurrPlay()).getDiceAt(i)){
         case 1:
             dispDices_->at(i)->setPixmap(*pixDice1);
@@ -176,11 +190,39 @@ void gameWindow::displayCurrentRoll(){
             break;
         }
     }
-
-    for (auto i=theGame_->getPlayer(theGame_->getCurrPlay()).getDiceStock(); i<8;i++){
-        dispDices_->at(i)->setPixmap(*pixDiceVoid);
+    if (theGame_->playingBigDice()){
+        for (auto i=normalStock; i<7;i++){
+            dispDices_->at(i)->setPixmap(*pixDiceVoid);
+        }
+        if (!theGame_->getPlayer(theGame_->getCurrPlay()).getHasBigDice()){
+            dispDices_->at(7)->setPixmap(*pixBDiceVoid);
+        }else {
+            switch (theGame_->getPlayer(theGame_->getCurrPlay()).getBigDiceVal()){
+            case 1:
+                dispDices_->at(7)->setPixmap(*pixBDice1);
+                break;
+            case 2:
+                dispDices_->at(7)->setPixmap(*pixBDice2);
+                break;
+            case 3:
+                dispDices_->at(7)->setPixmap(*pixBDice3);
+                break;
+            case 4:
+                dispDices_->at(7)->setPixmap(*pixBDice4);
+                break;
+            case 5:
+                dispDices_->at(7)->setPixmap(*pixBDice5);
+                break;
+            case 6:
+                dispDices_->at(7)->setPixmap(*pixBDice6);
+                break;
+            }
+        }
+    }else {
+        for (auto i=normalStock; i<8;i++){
+            dispDices_->at(i)->setPixmap(*pixDiceVoid);
+        }
     }
-
     dicesLayout_->addWidget(dispDices_->at(0),0,0);
     dicesLayout_->addWidget(dispDices_->at(1),1,0);
     dicesLayout_->addWidget(dispDices_->at(2),0,1);
