@@ -14,13 +14,7 @@ void Player::rollDices(){
 
 unsigned Player::valueOccurency(unsigned val) const{
     unsigned count = 0;
-    unsigned normalStock;
-    if (bigDiceExtension_){
-        normalStock = getDiceStock()-1;
-    } else {
-        normalStock = getDiceStock();
-    }
-    for(unsigned i=0; i< normalStock;i++){
+    for(unsigned i=0; i< getDiceStock();i++){
         if (dices_.at(i)==val){
             count++;
         }

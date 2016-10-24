@@ -70,11 +70,7 @@ unsigned Player::getSumAccount()const{
 }
 
 unsigned Player::getDiceStock()const{
-    if(bigDice_.first){
-        return diceStock_+1;
-    }else{
-        return diceStock_;
-    }
+    return diceStock_;
 }
 
 void Player::putDice(unsigned num, bool putBig){

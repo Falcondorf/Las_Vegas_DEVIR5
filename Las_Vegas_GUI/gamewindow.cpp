@@ -161,14 +161,8 @@ void gameWindow::displayInfosPlayer(){
 }
 
 void gameWindow::displayCurrentRoll(){
-    unsigned normalStock;
-    if (theGame_->playingBigDice()){
-        normalStock = theGame_->getPlayer(theGame_->getCurrPlay()).getDiceStock()-1;
-    } else {
-        normalStock = theGame_->getPlayer(theGame_->getCurrPlay()).getDiceStock();
-    }
 
-    for (unsigned i=0; i<normalStock;i++){
+    for (unsigned i=0; i<theGame_->getPlayer(theGame_->getCurrPlay()).getDiceStock();i++){
         switch (theGame_->getPlayer(theGame_->getCurrPlay()).getDiceAt(i)){
         case 1:
             dispDices_->at(i)->setPixmap(*pixDice1);
@@ -191,7 +185,7 @@ void gameWindow::displayCurrentRoll(){
         }
     }
     if (theGame_->playingBigDice()){
-        for (auto i=normalStock; i<7;i++){
+        for (auto i=theGame_->getPlayer(theGame_->getCurrPlay()).getDiceStock(); i<7;i++){
             dispDices_->at(i)->setPixmap(*pixDiceVoid);
         }
         if (!theGame_->getPlayer(theGame_->getCurrPlay()).getHasBigDice()){
@@ -219,7 +213,7 @@ void gameWindow::displayCurrentRoll(){
             }
         }
     }else {
-        for (auto i=normalStock; i<8;i++){
+        for (auto i=theGame_->getPlayer(theGame_->getCurrPlay()).getDiceStock(); i<8;i++){
             dispDices_->at(i)->setPixmap(*pixDiceVoid);
         }
     }

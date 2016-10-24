@@ -31,7 +31,7 @@ void Game::nextPlayer(){
 
 bool Game::roundOver(){
     for (Player p: playerList_){
-        if (p.getDiceStock()>0){
+        if (p.getDiceStock()>0 || p.getHasBigDice()){
             return false;
         }
     }
@@ -73,6 +73,7 @@ void Game::nextRound(){
     }
 //    for (Casino c : casinoList_){
 //        c.checkDraw();//A vérifier si il supprimme bien
+//                          => Non car foreach read/only
 //    }
     distributeTickets();
 
