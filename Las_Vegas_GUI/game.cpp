@@ -40,7 +40,7 @@ bool Game::roundOver(){
 
 bool Game::isOver(){
     bool isOver = false;
-    if (currRound_>3){
+    if (currRound_>0){
         isOver = true;
     }
     return isOver;

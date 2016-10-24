@@ -55,14 +55,14 @@ unsigned Game::getCurrRound() const{
 
 void Game::insertBet(unsigned val){
     casinoList_[val-1].insertBet(playerList_[currPlayer_].valueOccurency(val), playerList_[currPlayer_].getNum());
-    if (playerList_[currPlayer_].getBigDiceExt() && playerList_[currPlayer_].getBigDiceVal() == val){
+    if (bigDiceExt_ && playerList_[currPlayer_].getHasBigDice()
+                    && playerList_[currPlayer_].getBigDiceVal() == val){
         playerList_[currPlayer_].putDice(playerList_[currPlayer_].valueOccurency(val)-1,true);
-    } else if (playerList_[currPlayer_].getBigDiceExt() && playerList_[currPlayer_].getBigDiceVal() != val){
-        playerList_[currPlayer_].putDice(playerList_[currPlayer_].valueOccurency(val)-1,false);
+//    } else if (bigDiceExt_ && playerList_[currPlayer_].getBigDiceVal() != val){
+//        playerList_[currPlayer_].putDice(playerList_[currPlayer_].valueOccurency(val)-1,false);
     }else {
         playerList_[currPlayer_].putDice(playerList_[currPlayer_].valueOccurency(val),false);
     }
-    notifyObservers();
 }
 
 void Game::rollDices(){

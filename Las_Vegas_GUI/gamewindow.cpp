@@ -239,14 +239,12 @@ void gameWindow::update(const nvs::Subject *subject){
     displayInfosPlayer();
     displayCurrentRoll();
     if (theGame_->roundOver()){
+        theGame_->nextRound();
         if (theGame_->isOver()){
             QMessageBox *endWindow = new QMessageBox;
             endWindow->setText("FIN\nLe joueur "+QString::number(theGame_->getWinner().first+1)
                                +" a gagné avec une somme de "+QString::number(theGame_->getWinner().second));
             endWindow->exec();
-            this->close();
-        } else {
-            theGame_->nextRound();
         }
     }
 }
