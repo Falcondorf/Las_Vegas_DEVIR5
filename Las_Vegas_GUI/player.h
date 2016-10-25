@@ -30,13 +30,11 @@ public:
 };
 
 Player::Player(int no, bool ext, unsigned dices, unsigned bank)
-    :num_(no), bigDiceExtension_(ext), sumAccount_(bank){
+    :num_(no), bigDiceExtension_(ext), diceStock_(dices), sumAccount_(bank){
     if (bigDiceExtension_){
-        diceStock_ = dices-1;
         bigDice_.first = true;
         bigDice_.second = 1;
     } else {
-        diceStock_ = dices;
         bigDice_.first = false;
         bigDice_.second = 0;
     }
@@ -70,7 +68,16 @@ unsigned Player::getSumAccount()const{
 }
 
 unsigned Player::getDiceStock()const{
-    return diceStock_;
+    if (bigDiceExtension_){
+        if(bigDice_.first){
+            return diceStock_+1;
+        }else {
+            return diceStock_;
+        }
+    }else {
+        return diceStock_;
+    }
+
 }
 
 void Player::putDice(unsigned num, bool putBig){
