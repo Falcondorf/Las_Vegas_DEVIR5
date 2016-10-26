@@ -1,6 +1,5 @@
 INPUT(
 ./release\main.o
-./release\mainwindow.o
 ./release\titleWindow.o
 ./release\tDeck.o
 ./release\subject.o
@@ -9,7 +8,6 @@ INPUT(
 ./release\formulaireWindow.o
 ./release\casino.o
 ./release\gamewindow.o
-./release\moc_mainwindow.o
 ./release\moc_formulaireWindow.o
 ./release\moc_titleWindow.o
 ./release\moc_gamewindow.o

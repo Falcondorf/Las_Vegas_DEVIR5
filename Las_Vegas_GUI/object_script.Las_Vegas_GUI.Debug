@@ -1,6 +1,5 @@
 INPUT(
 ./debug\main.o
-./debug\mainwindow.o
 ./debug\titleWindow.o
 ./debug\tDeck.o
 ./debug\subject.o
@@ -9,7 +8,6 @@ INPUT(
 ./debug\formulaireWindow.o
 ./debug\casino.o
 ./debug\gamewindow.o
-./debug\moc_mainwindow.o
 ./debug\moc_formulaireWindow.o
 ./debug\moc_titleWindow.o
 ./debug\moc_gamewindow.o

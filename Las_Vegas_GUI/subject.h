@@ -7,9 +7,6 @@
 #define __SUBJECT__H__
 
 #include <set>
-
-
-
 /*!
  * \brief Espace de nom de Nicolas Vansteenkiste
  */

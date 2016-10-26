@@ -1,6 +1,10 @@
 #include "game.h"
+#include <exception>
 
 Game::Game(unsigned nbJ, bool bigTickets, bool bigDices):nbPlayer_(nbJ), bigDiceExt_(bigDices){//casinoList, playerList, pile à init
+    if (nbJ <2 || nbJ > 8){
+        throw std::exception();
+    }
     //Init pile et mélange
     if (bigTickets){
         pile_.extensionBigTickets();

@@ -2,6 +2,7 @@
 #define FORMULAIREWINDOW_H
 
 #include <QWidget>
+#include <QErrorMessage>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QPushButton>

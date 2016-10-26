@@ -250,8 +250,14 @@ void gameWindow::rolling(){
 }
 
 void gameWindow::putBet(){
-    theGame_->insertBet(sbBet_->value());
-    rollButton_->setEnabled(true);
-    buttonBet_->setDisabled(true);
-    theGame_->nextPlayer();
+    try{
+        theGame_->insertBet(sbBet_->value());
+        rollButton_->setEnabled(true);
+        buttonBet_->setDisabled(true);
+        theGame_->nextPlayer();
+    }catch (std::exception const& e){
+        QMessageBox *alertMsg = new QMessageBox;
+        alertMsg->setText("Attention! Paris non déposable...");
+        alertMsg->exec();
+    }
 }

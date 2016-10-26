@@ -13,7 +13,6 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
     titleWindow.cpp \
     tDeck.cpp \
     subject.cpp \
@@ -23,7 +22,7 @@ SOURCES += main.cpp\
     casino.cpp \
     gamewindow.cpp
 
-HEADERS  += mainwindow.h \
+HEADERS  += \
     casino.h \
     formulaireWindow.h \
     game.h \
@@ -34,6 +33,6 @@ HEADERS  += mainwindow.h \
     titleWindow.h \
     gamewindow.h
 
-FORMS    += mainwindow.ui
+FORMS    +=
 
 RESOURCES +=

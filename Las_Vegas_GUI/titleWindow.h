@@ -9,7 +9,6 @@
 #include "formulaireWindow.h"
 /*!
  * \brief titleWindow Classe qui a pour rôle de créer et afficher d'ouverture.
- *
  */
 class titleWindow : public QWidget
 {

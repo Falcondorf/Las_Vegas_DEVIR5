@@ -43,9 +43,7 @@ formulaireWindow::formulaireWindow(QWidget *parent) :QWidget(parent){
 }
 
 void formulaireWindow::startGame(){
-
     theGame_ = new Game(sbNbJ_->value(),rExtensionBigTickets_->isChecked(), rExtension2_->isChecked());
-
     theGameWindow_ = new gameWindow(theGame_);
     theGameWindow_->show();
 
