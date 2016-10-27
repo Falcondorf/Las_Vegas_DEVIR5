@@ -15,4 +15,4 @@ Une fois le jeu lancé, la fenêtre est d'abord divisé en deux panneaux. Celui 
  
 - **Problèmes:**
 Lors d'une partie en extension avec les gros dé, l'affichage du nombre de dés restant dans le panneau d'information du joueur
- n'est pas correct.
+ n'est pas correct. L'extension gros d� n'est pas parfaitement fonctionelle du coup...
