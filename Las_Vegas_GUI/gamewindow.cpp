@@ -239,6 +239,7 @@ void gameWindow::update(const nvs::Subject *subject){
             endWindow->setText("FIN\nLe joueur "+QString::number(theGame_->getWinner().first+1)
                                +" a gagné avec une somme de "+QString::number(theGame_->getWinner().second));
             endWindow->exec();
+            this->deleteLater();
         }
     }
 }
